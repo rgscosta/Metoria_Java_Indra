@@ -3,30 +3,33 @@ package Exercicios_Condicionais;
 import java.util.Scanner;
 import java.util.function.Predicate;
 
-/*5. Escreva um programa para calcular a conta final de um hóspede de um hotel, considerando que:
-a) Serão lidos o nome do hóspede, o tipo do apartamento utilizado (A, B, C ou D), o número de
-diárias utilizadas pelo hóspede e o valor do consumo interno do hóspede;
-b) O valor da diária é determinado pela seguinte tabela:
+/*5. Escreva um programa para calcular a conta final de um hospede de um hotel, considerando que:
+a) Sera lidos o nome do hospede, o tipo do apartamento utilizado (A, B, C ou D), o Número de
+diárias utilizadas pelo hospede e o valor do consumo interno do hospede;
+b) O valor da diaria determinado pela seguinte tabela:
 	A = 150.00
 	B = 100,00
 	C = 75,00
 	D = 50,00 
-c) O valor total das diárias é calculado pela multiplicação do número de diárias utilizadas pelo
-valor da diária;
-d) O subtotal é calculado pela soma do valor total das diárias e o valor do consumo interno;
+c) O valor total das diárias calculado pela multiplicacao do Número de diárias utilizadas pelo
+valor da diaria;
+d) O subtotal  calculado pela soma do valor total das diárias e o valor do consumo interno;
 e) O valor da taxa de serviço equivale a 10% do subtotal;
 f) O total geral resulta da soma do subtotal com a taxa de serviço.
-O programa deverá mostrar a conta final do hóspede, contendo: o nome do hóspede, o tipo do
-apartamento, o número de diárias utilizadas, o valor unitário da diária, o valor total das diárias, o
+O programa dever mostrar a conta final do hospede, contendo: o nome do hospede, o tipo do
+apartamento, o Número de diárias utilizadas, o valor unitrio da diaria, o valor total das diárias, o
 valor do consumo interno, o subtotal, o valor da taxa de serviço e o total geral.*/
-
 
 public class Hospedagem {
 
 	public static void main(String[] args) {
+
+		double taxaServico;
+		double descontoTaxaServico = 0.0;
+
 		Scanner scanner = new Scanner(System.in);
 
-		// Leitura e validaÃ§Ã£o dos dados do hÃ³spede
+		// Leitura e validacao dos dados do hospede
 		String nomeHospede;
 		do {
 			System.out.print("Nome do hospede (apenas letras): ");
@@ -36,7 +39,7 @@ public class Hospedagem {
 			}
 		} while (!nomeHospede.matches("[a-zA-Z]+"));
 
-		// Leitura e validaÃ§Ã£o do tipo do apartamento
+		// Leitura e validacao do tipo do apartamento
 		char tipoApartamento;
 		do {
 			System.out.print("Tipo do apartamento (A, B, C ou D): ");
@@ -46,47 +49,49 @@ public class Hospedagem {
 			}
 		} while (tipoApartamento != 'A' && tipoApartamento != 'B' && tipoApartamento != 'C' && tipoApartamento != 'D');
 
-		// Leitura e validaÃ§Ã£o do nÃºmero de diÃ¡rias
+		// Leitura e validacao do Número de diárias
 		int numDiarias;
 		do {
 			System.out.print("Número de diárias utilizadas: ");
 			numDiarias = scanner.nextInt();
 			if (numDiarias <= 0) {
-				System.out.println("O número de diárias deve ser positivo. Digite novamente.");
+				System.out.println("O Número de diárias deve ser positivo. Digite novamente.");
 			}
 		} while (numDiarias <= 0);
 
-		// Leitura e validaÃ§Ã£o do Consumo Interno
+		// Leitura e validacao do Consumo Interno
 		double consumoInterno;
 		do {
 			System.out.print("Valor do consumo interno (use virgula para decimal): ");
 			while (!scanner.hasNextDouble()) {
-				System.out.println("Entrada invalida. Digite apenas números com virgula para decimal.");
+				System.out.println("Entrada invalida. Digite apenas Números com virgula para decimal.");
 				scanner.next();
 			}
 			consumoInterno = scanner.nextDouble();
-			if (consumoInterno <= 0) {
-				System.out.println("O valor do consumo interno deve ser positivo. Digite novamente.");
+			if (consumoInterno < 0) {
+				System.out.println("O valor do consumo interno deve ser valores positivo. Digite novamente.");
 			}
-		} while (consumoInterno <= 0);
+		} while (consumoInterno < 0);
 
-		// Chamar o mÃ©todo para classificar o Tipo do apartamento e obter o valor da
-		// diÃ¡ria
+		// Chamar o metodo para classificar o Tipo do apartamento e obter o valor da diaria
 		double valorDiaria = classificarApartamento(tipoApartamento);
 
-		// CÃ¡lculo do valor total das diÃ¡rias
+		// Calculo do valor total das diárias
 		double valorTotalDiarias = numDiarias * valorDiaria;
 
-		// CÃ¡lculo do subtotal
+		// Calculo do subtotal
 		double subtotal = valorTotalDiarias + consumoInterno;
 
-		// CÃ¡lculo da taxa de serviÃ§o de 10%
-		double taxaServico = subtotal * 0.10;
-
-		// CÃ¡lculo do total geral
+		// Calculo da taxa de serviço de 10%
+		if (consumoInterno == 0) {
+			taxaServico = 0.0;
+		} else {
+			taxaServico = subtotal * 0.10;
+		}
+		// Calculo do total geral
 		double totalGeral = subtotal + taxaServico;
 
-		// ExibiÃ§Ã£o da conta final
+		// Exibir a conta final
 		System.out.println("\nDespesas do hospede: " + nomeHospede);
 		System.out.println("Tipo do apartamento: " + tipoApartamento);
 		System.out.println("Número de diárias utilizadas: " + numDiarias + " diárias");
@@ -94,7 +99,12 @@ public class Hospedagem {
 		System.out.println("Valor total das diárias: " + valorTotalDiarias);
 		System.out.println("Valor do consumo interno: " + consumoInterno);
 		System.out.println("Subtotal: " + subtotal);
-		System.out.println("Valor da taxa de serviço: " + taxaServico + " - 10% do valor total");
+		if (consumoInterno == 0) {
+			System.out.println("Valor da taxa de serviço com desconto: " + descontoTaxaServico);
+		} else {
+			System.out.println("Valor da taxa de serviço: " + taxaServico);
+		}
+
 		System.out.println("Total da hospedagem: " + totalGeral);
 		// Fechar Scanner
 		scanner.close();
@@ -119,5 +129,5 @@ public class Hospedagem {
 			return 0.0;
 		}
 	}
-	
+
 }

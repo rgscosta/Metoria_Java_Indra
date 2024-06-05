@@ -2,7 +2,7 @@ package Exercicios_Repeticao;
 
 import java.util.Scanner;
 
-public class VeficarSenhaCerta {
+public class VerificarSenhaCerta {
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);

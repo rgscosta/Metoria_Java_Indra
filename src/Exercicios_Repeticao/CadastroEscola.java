@@ -38,7 +38,7 @@ public class CadastroEscola {
             media = (nota1 + nota2) / 2.0;
             String situacao = media >= 7 ? "Aprovado" : "Reprovado";
             
-            System.out.println("MatrÃ­cula: " + matricula);
+            System.out.println("Matricula: " + matricula);
             System.out.println("Nome: " + nomeAluno);
             System.out.println("Média: " + media);
             System.out.println("Situação: " + situacao);
