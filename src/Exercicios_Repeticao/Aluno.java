@@ -14,6 +14,7 @@ public class Aluno {
 	double nota1;
 	double nota2;
 	double media;
+
 	//Construtor Novo
 	public Aluno(String nomeAluno, LocalDate dataNascimento, Double nota1, Double nota2, Integer classe, String turma) {
 		this.nomeAluno = nomeAluno;
