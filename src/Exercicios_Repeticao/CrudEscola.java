@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-public class CadastroConsultaEscolaRefatorado {
+public class CrudEscola {
 
 	static Scanner scanner = new Scanner(System.in);
 	static List<Aluno> alunos = new ArrayList<>();
@@ -95,20 +95,21 @@ public class CadastroConsultaEscolaRefatorado {
 	}
 
 	private static String cadastrarNomeAluno() {
-	    while (true) {
-	        System.out.println("Digite o nome do aluno: ");
-	        String nomeAluno = scanner.nextLine();
+		while (true) {
+			System.out.println("Digite o nome do aluno: ");
+			String nomeAluno = scanner.nextLine();
 
-	        try {
-	            if (nomeAluno.matches("[A-Za-zÀ-ú ]+")) {
-	                return nomeAluno;
-	            } else {
-	                throw new NomeInvalidoException("\nNome inválido. Por favor, digite um nome que contenha apenas letras. \n");
-	            }
-	        } catch (NomeInvalidoException e) {
-	            System.out.println(e.getMessage());
-	        }
-	    }
+			try {
+				if (nomeAluno.matches("[A-Za-zÀ-ú ]+")) {
+					return nomeAluno;
+				} else {
+					throw new NomeInvalidoException(
+							"\nNome inválido. Por favor, digite um nome que contenha apenas letras. \n");
+				}
+			} catch (NomeInvalidoException e) {
+				System.out.println(e.getMessage());
+			}
+		}
 	}
 
 	private static boolean verificarAlunoCadastrado(String nomeAluno, LocalDate dataNascimento) {
