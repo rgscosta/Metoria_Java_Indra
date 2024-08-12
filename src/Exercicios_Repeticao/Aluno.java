@@ -15,7 +15,7 @@ public class Aluno {
 	double nota2;
 	double media;
 
-	//Construtor Novo
+	// Construtor Novo
 	public Aluno(String nomeAluno, LocalDate dataNascimento, Double nota1, Double nota2, Integer classe, String turma) {
 		this.nomeAluno = nomeAluno;
 		this.dataNascimento = dataNascimento;
@@ -33,7 +33,8 @@ public class Aluno {
 	public void determinarSituacao() {
 		this.situacao = this.media >= 7 ? "Aprovado" : "Reprovado";
 	}
-	//Contrutor Antigo
+
+	// Contrutor Antigo
 	public Aluno(String nomeAluno, double nota1, double nota2, LocalDate dataNascimento, int classe, String turma) {
 		this.matricula = nextmatricula++;
 		this.nomeAluno = nomeAluno;

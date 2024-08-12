@@ -4,9 +4,9 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class ChuteCerto {
-	
+
 	public static void main(String[] args) {
-		
+
 		Random random = new Random();
 		int numeroEscolhido = random.nextInt(100) + 1;
 		try (Scanner scanner = new Scanner(System.in)) {
